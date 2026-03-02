@@ -1,0 +1,20 @@
+Invoice #{{ purchase.id }}
+Date: {{ purchase.created_at|date:"d M Y" }}
+Customer: {{ purchase.customer_email }}
+
+Items Purchased:
+{% for item in items %}
+  {{ item.product.product_id }} x{{ item.quantity }}
+  Unit Price: {{ item.unit_price|floatformat:2 }}
+  Tax: {{ item.tax_percentage }}% = {{ item.get_tax_amount|floatformat:2 }}
+  Line Total: {{ item.get_line_total|floatformat:2 }}
+{% endfor %}
+
+Summary:
+  Total without tax  : {{ purchase.total_without_tax|floatformat:2 }}
+  Total tax          : {{ purchase.total_tax|floatformat:2 }}
+  Net price          : {{ purchase.net_price|floatformat:2 }}
+  Cash paid          : {{ purchase.cash_paid|floatformat:2 }}
+  Balance returned   : {{ purchase.balance|floatformat:2 }}
+
+Thank you!
