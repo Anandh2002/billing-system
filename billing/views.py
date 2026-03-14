@@ -12,6 +12,7 @@ DENOMINATIONS = [500, 50, 20, 10, 5, 2, 1]
 
 
 def calculate_change_denominations(balance_amount):
+
     result = {}
     remaining = int(balance_amount)
     for denom in DENOMINATIONS:
@@ -81,7 +82,7 @@ def process_bill(request):
     except ValueError:
         cash_paid = 0
         errors.append('Invalid cash amount.')
-
+    
     # collect denomination counts
     denom_received = {}
     for d in DENOMINATIONS:
@@ -93,6 +94,7 @@ def process_bill(request):
                     denom_received[str(d)] = c
             except ValueError:
                 pass
+        
 
     if len(errors) > 0:
         for e in errors:
